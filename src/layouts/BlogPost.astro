@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -17,11 +18,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     <div>
       {
         heroImage && (
-          <img
+          <Image
             width={1020}
             height={510}
             src={heroImage}
-            alt=""
+            alt="blogpost hero"
+            loading="eager"
             class="w-full rounded-2xl"
           />
         )
