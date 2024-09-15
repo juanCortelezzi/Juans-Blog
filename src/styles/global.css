@@ -36,8 +36,6 @@ body {
   font-family: "Geist", "Atkinson", sans-serif;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  /* font-size: 20px; */
-  /* line-height: 1.7; */
 }
 
 .sr-only {
