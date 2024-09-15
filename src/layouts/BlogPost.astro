@@ -4,17 +4,23 @@ import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"] & {
+  next: { slug: string; title: string } | undefined;
+  prev: { slug: string; title: string } | undefined;
+};
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, next, prev } =
+  Astro.props;
 ---
 
 <BaseLayout
   title={title}
   description={description}
-  class="prose mx-auto space-y-8 prose-pre:rounded-2xl prose-img:rounded-2xl prose-img:shadow-xl"
+  class="mx-auto max-w-prose space-y-12"
 >
-  <article>
+  <article
+    class="prose prose-pre:rounded-2xl prose-img:rounded-2xl prose-img:shadow-xl"
+  >
     <div>
       {
         heroImage && (
@@ -47,4 +53,26 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       <slot />
     </div>
   </article>
+  <footer>
+    <div class="grid grid-cols-2">
+      {
+        prev ? (
+          <div class="col-start-1 justify-self-start font-bold">
+            <a href={`/blog/${prev.slug}`}>
+              <span class="text-xl">&lt;</span> Prev: {prev.title}
+            </a>
+          </div>
+        ) : null
+      }
+      {
+        next ? (
+          <div class="col-start-2 justify-self-end font-bold">
+            <a href={`/blog/${next.slug}`}>
+              Next: {next.title} <span class="text-xl">&gt;</span>
+            </a>
+          </div>
+        ) : null
+      }
+    </div>
+  </footer>
 </BaseLayout>
