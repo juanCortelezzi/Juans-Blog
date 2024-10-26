@@ -4,7 +4,7 @@ import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 
-type Props = CollectionEntry<"blog">["data"] & {
+type Props = (CollectionEntry<"blog">["data"] & { pubDate: Date }) & {
   next: { slug: string; title: string } | undefined;
   prev: { slug: string; title: string } | undefined;
 };
@@ -56,19 +56,19 @@ const { title, description, pubDate, updatedDate, heroImage, next, prev } =
   <footer>
     <div class="grid grid-cols-2">
       {
-        prev ? (
-          <div class="col-start-1 justify-self-start font-bold">
-            <a href={`/blog/${prev.slug}`}>
-              <span class="text-xl">&lt;</span> Prev: {prev.title}
+        next ? (
+          <div class="col-start-2 justify-self-end font-bold">
+            <a href={`/blog/${next.slug}`}>
+              Next: {next.title} <span class="text-xl">&gt;</span>
             </a>
           </div>
         ) : null
       }
       {
-        next ? (
-          <div class="col-start-2 justify-self-end font-bold">
-            <a href={`/blog/${next.slug}`}>
-              Next: {next.title} <span class="text-xl">&gt;</span>
+        prev ? (
+          <div class="col-start-1 justify-self-start font-bold">
+            <a href={`/blog/${prev.slug}`}>
+              <span class="text-xl">&lt;</span> Prev: {prev.title}
             </a>
           </div>
         ) : null

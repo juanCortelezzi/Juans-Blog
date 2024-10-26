@@ -3,10 +3,11 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
+import { isPostPublished } from "../../consts";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection("blog"))
+  .filter(isPostPublished)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout>

@@ -5,13 +5,11 @@ pubDate: "Oct 26 2024"
 heroImage: "/public/blog-placeholder-2.jpg"
 ---
 
-# How to track a bus.
-
-have you ever wandered how the little information displays in the bus stop work?
+have you ever wondered how the little information displays in the bus stop work?
 How that system knows when the next bus is going to arrive and how it is mostly wrong?
 How do bus companies decide when to create a new path or when to add more buses to an existing path? 
 
-# Tracking a bus.
+## Tracking a bus.
 
 Cars and buses might come with built-in GPS systems nowadays, however, we can not just control them
 to get the desired data from them so we needed another solution, a separate device capable of network communication,

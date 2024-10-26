@@ -1,17 +1,24 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPost.astro";
+import { isPostPublished, type PublishedPost } from "../../consts";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post, index) => ({
-    params: { slug: post.slug },
-    props: { post, next: posts[index + 1], prev: posts[index - 1] },
-  }));
+  return (await getCollection("blog"))
+    .filter(isPostPublished)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .map((post, index, postsFiltered) => ({
+      params: { slug: post.slug },
+      props: {
+        post,
+        prev: postsFiltered[index + 1],
+        next: postsFiltered[index - 1],
+      },
+    }));
 }
 
 type Props = {
-  post: CollectionEntry<"blog">;
+  post: PublishedPost;
   next?: CollectionEntry<"blog">;
   prev?: CollectionEntry<"blog">;
 };
