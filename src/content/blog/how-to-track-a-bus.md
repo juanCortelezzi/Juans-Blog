@@ -2,7 +2,7 @@
 title: "How to track a bus"
 description: "Using uber's H3 system to geolocate buses."
 pubDate: "Oct 26 2024"
-heroImage: "/public/blog-placeholder-2.jpg"
+heroImage: "/blog-placeholder-2.jpg"
 ---
 
 have you ever wondered how the little information displays in the bus stop work?
